@@ -1,16 +1,21 @@
 import java.io.*;
-import org.w3c.dom.*;
-import org.xml.sax.*;
-import javax.xml.parsers.*;
 import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 
 public class XformWithXSL {    
 	public static void main(String args[]) {
 		
-		xsl("menu.xml","menustyle.xsl","menuout.html");
-		System.out.println("Done!");
+		File folder = new File("reports/");
+		File[] listOfFiles = folder.listFiles();
+		for (int i = 0; i < listOfFiles.length; i++) {
+		      if (listOfFiles[i].isFile() && (listOfFiles[i].getName().indexOf(".xml")==listOfFiles[i].getName().length()-4)) {
+		        System.out.println("Processing::=> " + "reports/"+ listOfFiles[i].getName());
+		        xsl("reports/"+listOfFiles[i].getName(),"menustyle.xsl", "reports/"+listOfFiles[i].getName()+"_transformed.html");
+		        
+		      } else if (listOfFiles[i].isDirectory()) {
+		        System.out.println("Directory found instead of XML file: " + listOfFiles[i].getName());
+		      }
+		    }
 	}
 	
     public static void xsl(String xmlFile,  String styleFile, String transformedXml) {
