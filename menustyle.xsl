@@ -13,5 +13,23 @@
     </p>
   </div>
 </xsl:for-each>
+<xsl:for-each select="catalog/book">
+  <div style="background-color:teal;color:white;padding:4px">
+    <span style="font-weight:bold"><xsl:value-of select="title"/> - </span>
+    <xsl:value-of select="price"/>
+    <span style="font-style:italic"> ( <xsl:value-of select="publish_date"/>) </span>
+    </div>
+  <div style="margin-left:20px;margin-bottom:1em;font-size:10pt">
+    <p>
+    <xsl:value-of select="author"/>
+    <span style="font-style:italic"> Genre: <xsl:value-of select="genre"/> </span>
+    </p>
+  </div>
+  <div style="margin-left:20px;margin-bottom:1em;font-size:10pt;font-color:red;">
+    <p>
+    <xsl:value-of select="description"/>    
+    </p>
+  </div>
+</xsl:for-each>
 </body>
 </html> 
